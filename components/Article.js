@@ -118,9 +118,9 @@ const data = [
 // This funcion helps out by writing out less code for creating any elements that needs text data appended to itself.
 const createElementWithData = (tagName, data) => {
   const element = document.createElement(tagName);
-  element.innerHTML=data;
-  return element
-}
+  element.innerHTML = data;
+  return element;
+};
 
 const articleMaker = (data) => {
   const { title, date, firstParagraph, secondParagraph, thirdParagraph } = data;
@@ -129,32 +129,39 @@ const articleMaker = (data) => {
   // All of the elements for an article are created here.
   const titleElement = createElementWithData("h2", title);
   const dateElement = createElementWithData("p", date);
-  const paragraph1 = createElementWithData("p", firstParagraph)
-  const paragraph2 = createElementWithData("p", secondParagraph)
-  const paragraph3 = createElementWithData("p", thirdParagraph)
+  const paragraph1 = createElementWithData("p", firstParagraph);
+  const paragraph2 = createElementWithData("p", secondParagraph);
+  const paragraph3 = createElementWithData("p", thirdParagraph);
   const expandButton = document.createElement("span");
-  
+
   // Adds the class "date" to the date element
-  dateElement.classList.add("date")
+  dateElement.classList.add("date");
 
   // Adds the class "expandButton" to the expandButton element, and has an event listener to toggle the class "article-open" for the element.
   expandButton.classList.add("expandButton");
-  expandButton.addEventListener("click", e=> {
-    e.target.classList.toggle("article-open")
-  })
+  expandButton.addEventListener("click", (e) => {
+    e.target.classList.toggle("article-open");
+  });
 
   // Added all of the created elements to an Array that can be looped over to append the elements as children to the article element.
-  const elementCollection = [titleElement,dateElement,paragraph1,paragraph2, paragraph3, expandButton]
+  const elementCollection = [
+    titleElement,
+    dateElement,
+    paragraph1,
+    paragraph2,
+    paragraph3,
+    expandButton,
+  ];
 
-  elementCollection.forEach(element => article.appendChild(element))
+  elementCollection.forEach((element) => article.appendChild(element));
 
-  return article
+  return article;
 };
 
 // Query selector for the "div.article" element.
 const divArticles = document.querySelector("div.articles");
 
-data.forEach(article=>{
+data.forEach((article) => {
   const articleElement = articleMaker(article);
   divArticles.appendChild(articleElement);
-})
+});
